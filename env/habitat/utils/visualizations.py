@@ -7,6 +7,7 @@ if sys.platform == 'darwin':
     matplotlib.use("tkagg")
 else:
     matplotlib.use('Agg')
+matplotlib.use('TkAgg')
 import matplotlib.pyplot as plt
 
 import seaborn as sns
@@ -71,6 +72,7 @@ def visualize(fig, ax, img, grid, pos, gt_pos, dump_dir, rank, ep_no, t,
         plt.gcf().canvas.flush_events()
         fig.canvas.start_event_loop(0.001)
         plt.gcf().canvas.flush_events()
+        plt.show()
 
     if print_images:
         fn = '{}/episodes/{}/{}/{}-{}-Vis-{}.png'.format(

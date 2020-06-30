@@ -26,8 +26,10 @@ from env.utils.map_builder import MapBuilder
 from env.utils.fmm_planner import FMMPlanner
 
 from env.habitat.utils.noisy_actions import CustomActionSpaceConfiguration
-import env.habitat.utils.pose as pu
-import env.habitat.utils.visualizations as vu
+from env.habitat.utils import pose as pu
+#import env.habitat.utils.pose as pu
+#import env.habitat.utils.visualizations as vu
+from env.habitat.utils import visualizations as vu
 from env.habitat.utils.supervision import HabitatMaps
 
 from model import get_grid
@@ -535,6 +537,9 @@ class Exploration_Env(habitat.RLEnv):
                             dump_dir, self.rank+1, self.episode_no)
             if not os.path.exists(ep_dir):
                 os.makedirs(ep_dir)
+            
+            #self.map.fill(0.)
+            self.explorable_map.fill(0.)
 
             if args.vis_type == 1: # Visualize predicted map and pose
                 vis_grid = vu.get_colored_map(np.rint(map_pred),
